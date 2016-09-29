@@ -21,11 +21,12 @@
     os_server:
       name: "{{ item }}"
       key_name: "{{ keypair }}"
-      flavor: "{{ m1large }}"
+      flavor: "{{ flavor }}"
       security_groups: "{{ security_group }}"
       userdata:  "{{ lookup('file', 'files/coreos-python.sh') }}"
       image: "{{ coreos_image }}"
-#      auto_floating_ip: no
+      nics: "net-id=d0bc373b-44a3-4b98-93aa-6844d1919f98"
+      auto_floating_ip: no
       meta: 
         ansible: "infra"  
 #      nics: 
@@ -44,6 +45,7 @@
     #  server: result.results[0].openstack.name
     #  volume: 
     # add lab machine to the inventory
+
   - name: Add lab machines to the inventory
     add_host: hostname={{item.openstack.public_v4}} groupname=infra
     with_items: result.results

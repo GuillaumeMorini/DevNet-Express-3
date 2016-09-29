@@ -263,7 +263,7 @@ glance image-list
 You should see lots of images!  Cisco Metapod comes with many already predefined for you.  Most 
 environments will make their own.  
 
-Find the ubuntu image ```ubuntu.12-04.x86-64.20130725``` as this is what we'll use.  
+Find the ubuntu image ```ubuntu_1204_server_cloudimg_amd64``` as this is what we'll use.  
 
 
 ### 1.4.5 Generate a Keypair
@@ -301,21 +301,21 @@ be recovered.  So make sure you save it the first time!  If you lose it, delete 
 Run the following command to create a new instance
 
 ```
-nova boot --flavor m1.small --image ubuntu.12-04.x86-64.20130725 --key-name <name>key <name>firstimage
+nova boot --flavor m1.small --image ubuntu_1204_server_cloudimg_amd64 --key-name <name>key --nic net-id=367bb368-5be1-4534-93ff-0ccf15e51700  <name>firstimage
 ```
 
 Where ```<name>``` is your fun unique name.  
 
 Check on the status to see if the server has been created using the ```nova list``` and 
-```nova show <name>firstimage``` commands.
+```nova show <name>firstimage``` commands. Note the IP address of your instance.
 
 ### 1.4.7 Log In to the new Instance
 
 To make sure you did it right, log into the new instance you just created:
 ```
-ssh -i <name>key.pem cloud@<name>firstimage
+ssh -i <name>key.pem cloud@IP_address
 ```
-where ```<name>``` is once again the unique name you picked. 
+where ```IP_address``` is the IP address you picked previously. 
 
 If all is successful you should be able to login with out a password: 
 ```

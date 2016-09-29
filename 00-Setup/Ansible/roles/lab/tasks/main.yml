@@ -1,6 +1,7 @@
 ---
 - name: Ensure Lab is Up. 
   docker: 
+    docker_api_version: 1.21
     image: "vallard/metaclient" 
     name: lab01 
     privileged: true

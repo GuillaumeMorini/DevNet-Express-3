@@ -7,7 +7,7 @@ three modules listed below.
 This repository also contains ansible scripts to deploy the lab
 workstations and infrastructure required to any Metapod environment. 
 
-Contact [@Guismo1](http://twitter.com/Guismo1) for any information or
+Contact [@GuillaumeMorini](http://twitter.com/GuillaumeMorini) for any information or
 other details. 
 
 ## Day at a Glance

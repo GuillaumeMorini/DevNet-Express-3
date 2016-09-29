@@ -1,13 +1,13 @@
 ---
 #keypair: cloudvt
-keypair: t14
+keypair: gmorini-pubkey
 #keypair: t5
 #keypair: t3
 security_group: default
 #security_group: cicd
 #coreos_image: CoreOS-766.4.0 
 #coreos_image: CoreOS832
-coreos_image: CoreOS
+coreos_image: ac9c03b5-c8bd-4ff9-bdc3-03e4bdd619a0
 #m1large: df140c7d-abdd-47ed-9246-698a21fd4121
 #trial3
 #m1large: 49e9ee33-5cd8-4894-a8da-7954907d9101
@@ -15,12 +15,15 @@ coreos_image: CoreOS
 # trial 5
 #m1large: e2f19640-e1f7-4165-b4a8-6bb4213520ee
 # trial 14
-m1large: 3d64cbb9-c24c-4c9b-8ff3-2dfb26a73c3b
+#m1.small
+#flavor: f2c96d12-5454-450c-9ae6-177c4d82eaf3
+#m1.large
+flavor: 687e3d60-29ca-4e5f-a3b2-71411012b27c
 
 # trial5:
 #net: trial5-shared
 # trail14:
-net: trial14-2402
+net: 687e3d60-29ca-4e5f-a3b2-71411012b27c 
 
 floating_ip_pool: "PUBLIC EXTERNAL - DO NOT MODIFY"
 
