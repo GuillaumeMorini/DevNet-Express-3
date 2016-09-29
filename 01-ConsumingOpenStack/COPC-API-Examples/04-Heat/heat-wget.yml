@@ -1,0 +1,14 @@
+heat_template_version: '2014-10-16'
+resources:
+  my_instance:
+    properties: 
+      flavor: m1.small
+      image: ubuntu-14.04-server
+      key_name: 
+      user_data: |
+          #!/bin/bash
+          cd /tmp
+          wget http://benincosa.com/test.sh
+          chmod 755 /tmp/test.sh
+          /tmp/test.sh
+    type: OS::Nova::Server
