@@ -393,10 +393,6 @@ to explore a different framework.
 
 Ansible is great framework to start with.  
 
-Currently Ansible is stuck somewhere version 1.9 and 2.0.  2.0 has a lot of OpenStack
-goodness to it, but is pretty buggy if your environment isn't setup for later 
-distributions. 
-
 Ansible has the idea of 'playbooks'.  These are just run scripts that we use to
 run common tasks like install a package or provision an instance.  
 
