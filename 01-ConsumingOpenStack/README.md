@@ -432,7 +432,12 @@ and we will edit it.
 sure this is the image ID and not the image name. 
 * Enter your key name.  This is the key name you used in a previous exercise. 
 * Change the ```name``` from ```ansible-server``` to something unique. 
-* Change the ```flavor_id``` to be the m1.small ID that you can get by running ```nova flavor-list```.  This will be a long string like ```6976591b-8b4c-40f1-9e2f-d69f68de0015```
+* Change the ```flavor_id``` to be the m1.small ID that you can get by running ```nova flavor-list```.  This will be a short string like ```2```
+* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list``. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
+```
+    nic:
+      - net-id : 367bb368-5be1-4534-93ff-0ccf15e51700
+```
 
 Notice that the script will also use environment variables.  In Ansible
 2.0 these are not required and picked up automatically with the new
