@@ -435,7 +435,7 @@ sure this is the image ID and not the image name.
 * Change the ```flavor_id``` to be the m1.small ID that you can get by running ```nova flavor-list```.  This will be a short string like ```2```
 * Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
 ```
-    nic:
+    nics:
       - net-id : 367bb368-5be1-4534-93ff-0ccf15e51700
 ```
 
