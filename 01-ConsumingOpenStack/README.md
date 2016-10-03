@@ -475,10 +475,18 @@ Modify the ```heat-wget.yml``` file.
 ```glance image-list``` to verify
 * Make sure your keypair is there. 
 * Modify the image name to be an image name that actually exists on the system. 
+* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
+```
+    networks:
+      - network : 367bb368-5be1-4534-93ff-0ccf15e51700
+```
+
 
 Save the changes and close the file. 
 
 ### 1.7.2 Run the heat template
+
+__Before running the heat template, ask your lab proctor to rise your privilege to use heat.__
 
 You can now run the Heat stack by running: 
 ```
@@ -517,8 +525,16 @@ cd ~/COPC-API-Examples/05-Terraform/
 ```
 Modify the ```example.tf``` file.
 
-* Change the username to cloudweek
+* Change the username to your username "user_xx"
 * Update name, image_id, flavor_id and keypair
+* Remove user_data line
+* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
+```
+  network {
+    uuid = "367bb368-5be1-4534-93ff-0ccf15e51700"
+    name = "private"
+  }
+```
 
 Test with the command ```terraform plan```
 
