@@ -1,0 +1,23 @@
+#cloud-config
+
+coreos:
+  etcd2:
+    # generate a new token for each unique cluster from https://discovery.etcd.io/new?size=3
+    # specify the initial size of your cluster with ?size=X
+    discovery: https://discovery.etcd.io/<token>
+    # multi-region and multi-cloud deployments need to use $public_ipv4
+    advertise-client-urls: http://$private_ipv4:2379,http://$private_ipv4:4001
+    initial-advertise-peer-urls: http://$private_ipv4:2380
+    # listen on both the official ports and the legacy ports
+    # legacy ports can be omitted if your application doesn't depend on them
+    listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
+    listen-peer-urls: http://$private_ipv4:2380
+  units:
+    - name: etcd2.service
+      command: start
+    - name: fleet.service
+      command: start
+ssh_authorized_keys:
+  # include one or more SSH public keys
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3tlDaR7OUnYtSY0znXVKdkvubQWvHKHqavIhLK1wm9r1cm53lNRrEG4JALJ5gGfJqAwztY8NIOXi03gaIPkl/8GTsBxNEiJI+K6fG34RyIUmy36B9/O1ny2KkNpw+KQ2jX2zPwKBtNTTdiVxFCFTJa5AnaIDvMByKCbw2ULbcyLeXALYHYybf2caFreI0uhwXxj3BKuXfZD1eHufsln8+ZqSgUM14vebpZv86yi0xJq41hjj0hUklHk3jwbFgYtql7fQzFFJnGi8nRRl4dxrsQZarhGYijsNbTHjEK1KJtI1DPFqpzuhYE+iYfXn0xjCtMuiVWwRngR6Ug86ATTDb
+  - ssh-dss AAAAB3NzaC1kc3MAAACBAMJubadTbAOOxe3eTuTKdaHArA59qYmWKPwoiVrIokytEqKaoBC8hhu+GMy5OuXrM+8A3k36I0YjMcN5tWQ0fHeH2QysQWonndztixzs8m71Dau7OTOILDZaF6FP+BN8CLje4pW4e4RHxF7Eko0GIF82hJI+7xnj5YQB2nrHWNQ/AAAAFQCVTRrwUUv9JdT4WtjM+sl/BwEz+QAAAIAYl/OHqw3NYfccH32kRpRlVSHKE48xf+UhYrrMzga7C0Ub6ZMUvaBkapr1Gv9YNLlazbRC2jgaakiXEBHiAQZMiGvpNAQW8zm7V+VRS8VZynA0vkM7//gDBCms56CYsPZI/V7Qxpyl0igRaJo6zq5KZHkKYNBWt84Sh9pFsWtngwAAAIALcj+nJziobZsSDQV5dqG5CjLpDZbufNeuFOoBsjoMWyFPkLJoNYfTjJfqU8a+dlBdi4V8lae5RsF+eHoVrGu/ehwty6LD+QKFUNAtTR0zqtuydqlosXodejarmTpLppnPnS4eAQ3oh8o2FZnLBX4eOlw4qPEPbDrFNbDQ6q7eUw==

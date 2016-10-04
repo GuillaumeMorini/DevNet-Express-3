@@ -12,8 +12,7 @@
   * [2\.2\.1 Searching Containers](#221-searching-containers)
   * [2\.2\.2 Downloading Docker Images](#222-downloading-docker-images)
   * [2\.2\.3 Starting Docker Images](#223-starting-docker-images)
-  * [2\.2\.4 Volumes, Environment Variables](#224-volumes-environment-variables)
-  * [2\.2\.5 Building a basic Container](#225-building-a-basic-container)
+  * [2\.2\.4 Building a basic Container](#224-building-a-basic-container)
 * [2\.3 (Optional) Setting Git and Docker on your own laptop](#23-optional-setting-git-and-docker-on-your-own-laptop)
 
 
@@ -48,8 +47,8 @@ account information on it.
 If you do not have an account, [sign up for Github now](http://github.com). There
 is no cost to sign up for free.  
 
-When selecting your email, you may want to use a personal email instead of a Cisco
-email.  When selecting passwords, keep this in mind. 
+When selecting your email, you may want to use a professional email or a personal one.
+When selecting passwords, keep this in mind. 
 
 ![Password Hints](http://imgs.xkcd.com/comics/password_strength.png)
 
@@ -89,10 +88,10 @@ git clone <your repo>
 Where ```<your repo>``` is the clone URL shown on the right side of the web page.  You can 
 click on the clipboard to do this.  
 
-As an example, if you wanted to get Vallard's cloudtest repo you would run:
+As an example, if you wanted to get Guismo's cloudtest repo you would run:
 
 ```
-git clone https://github.com/vallard/cloudtest.git
+git clone https://github.com/Guismo1/cloudtest.git
 ```
 this will create a directory called cloudtest.  
 
@@ -251,7 +250,7 @@ done without meetings it is quite remarkable.
 
 In this section we'll talk about what happens if you find a problem with 
 code you're working on.  It starts with opening an issue.  
-Open your browser to [This Repo's issues](https://github.com/vallard/CiscoCloudDayLab1/issues). 
+Open your browser to [This Repo's issues](https://github.com/Guismo1/DevNet-Express-3/issues). 
 
 Here you see the lab that you are working on right now. Create a new issue
 with this repo.  You may not like the grammar, or you may find a spelling error,
@@ -356,9 +355,9 @@ exercises to get familiar with containers.
 
 On the lab workstation run the commands: 
 ```
-sudo docker search python
-sudo docker search nginx
-sudo docker search rails
+docker search python
+docker search nginx
+docker search rails
 ```
 
 (Password is the same as your user account: ```Cisco.123```)
@@ -377,7 +376,7 @@ on the top left.
 A quick way to get started with Docker is to download one of the smallest 
 containers there is.  From the lab machine run: 
 ```
-sudo docker run hello-world
+docker run hello-world
 ```
 This image will download (if it hasn't already) and run, flash a message
 stating its working and then terminate.  
@@ -392,12 +391,12 @@ is not present, it will download it and then run it.
 Let's try running a webserver.  Nginx is a good webserver to start
 with.  From your lab machine run the command:
 ```
-sudo docker run --rm -it -p 80<user #>:80 --name nginx<user #> ci:5000/nginx /bin/bash
+docker run --rm -it -p 88<user #>:80 --name nginx<user #> ci:5000/nginx /bin/bash
 ```
 where ```<user #>``` is the number of your account.  
 E.g.: user03 would run the command:
 ```
-sudo docker run --rm -it -p 8003:80 --name nginx03 ci:5000/nginx /bin/bash
+docker run --rm -it -p 8803:80 --name nginx03 ci:5000/nginx /bin/bash
 ```
 
 This will run an interactive container on which you will be logged in.  
@@ -407,15 +406,15 @@ running.
 The ```-it``` is actually two flags:  The ```-i``` for interactive and
 the ```-t``` for creating a terminal.  
 
-The ```-p 80<user #>:80``` tells docker to map port 80 of the container
-to the host port ```80<user #>```.  
+The ```-p 88<user #>:80``` tells docker to map port 80 of the container
+to the host port ```88<user #>```.  
 
 
 You can now start nginx up by running:
 ```
 service nginx start
 ```
-Try opening a web page to this service from your browser: ```http://<labip>:80<user #>```
+Try opening a web page to this service from your browser: ```http://<labip>:88<user #>```
 
 When you have finished verifying that your webserver is up, go back to the terminal
 and type ```exit``` to exit the running container.  
@@ -427,7 +426,7 @@ they start up.  In the case of the nginx container, it by default will run the
 nginx websever.  Let's rerun our container in daemon mode by running the command: 
 
 ```
-sudo docker run -d -p 8003:80 --name nginx03 ci:5000/nginx
+docker run -d -p 8803:80 --name nginx03 ci:5000/nginx
 ```
 This will start up the container and again you should be able to access it through your
 same web browser URL. 
@@ -436,23 +435,23 @@ We stop containers by stopping them either via the name, or the id.  By default 
 do not give a container a name, then it will randomly generate a name.  Run the command
 
 ```
-sudo docker ps
+docker ps
 ```
 This will show you all of the running containers.  You may see other people's 
 containers running as well.  Please be kind, and don't clobber their stuff.  
 
 To stop your container we run:
 ```
-sudo docker stop nginx<user #>
+docker stop nginx<user #>
 ```
 Now to see all of the containers, including the stopped containers you run: 
 ```
-sudo docker ps -a
+docker ps -a
 ```
 This will show all the containers that are there.  We can remove your container 
 (not the image) by running: 
 ```
-sudo docker rm nginx<user #>
+docker rm nginx<user #>
 ```
 You could also remove the hello-world image by running ```docker rmi hello-world```.
 If there are people running it then you won't be able to remove it until the containers
@@ -460,53 +459,7 @@ are stopped and cleared.  Its important to distinguish between a container and a
 container image.  A container image is just a running image.  The docker
 command is used to manage both of them. 
 
-### 2.2.4 Volumes, Environment Variables
-
-Even though we talk a lot about stateless services the state must exist somewhere even 
-if it isn't tied specifically to the instance or container that runs.  Volumes are how
-we keep state in Docker containers.  
-
-Let's get a real web service up by making our own webpage and have the state displayed. 
-On your lab workstation run the command: 
-```
-mkdir ~/html/
-cd ~/html
-wget https://raw.githubusercontent.com/Guismo1/DevNet-Express-3/master/02-GitAndRegistries/html/index.html
-sudo docker run -d -v `pwd`:/usr/share/nginx/html -p 80<user #>:80 --name nginx<user #> ci:5000/nginx
-```
-
-The ```-v``` flag will mount a volume, specifically our current working directory, which has our 
-newly grabbed ```index.html```.  Things in this volume will persist.  While a webpage
-shows reading to it, some containers will instead write data to volumes.  By mounting
-with the -v we ensure they persist.  That way if the container goes away, our 
-information will remain.  
-
-This is better demonstrated with a database as those persist across reboots. 
-In the [gist shown here](https://gist.github.com/vallard/5a7bcebb912e673ed60a#gitlab-example)
-you can see an example of how we created the gitlab container that uses
-a Postgres database.  The Postgres database mounts a volume (in this case
-```/opt/postgresql/data``` so that if the container is deleted, the data
-will persist.  This is analogous to how in openstack we mount persistent
-volumes to instances.  
-
-Stop your running container so that you are ready for the next exercise:
-```
-sudo docker stop nginx<user #>
-sudo docker rm nginx<user #>
-```
-
-#### Environment Variables
-
-The other examples you'll see in running containers are passing environment
-variables to the containers.  These environment variables can be 
-parsed and ran by the script that first runs when the container
-launches.  
-
-The [Gitlab example](https://gist.github.com/vallard/5a7bcebb912e673ed60a#gitlab-example)
-shows the database passwords and users that are sent when the postgres
-container first launches.  
-
-### 2.2.5 Building a basic Container
+### 2.2.4 Building a basic Container
 
 At this point we've been using containers that have been built by other people. 
 There are various ways you can get an image baked the way you want it:
@@ -534,6 +487,7 @@ Let's now build a basic docker container using a Dockerfile.
 Using your text editor create a new file called ```Dockerfile``` in your
 current directory. (should be the html directory from the last exercise)
 ```
+wget https://raw.githubusercontent.com/Guismo1/DevNet-Express-3/master/02-GitAndRegistries/html/index.html
 vim Dockerfile
 ```
 Inside this file let's past the following into this file:
@@ -546,7 +500,7 @@ ADD index.html /usr/share/nginx/html/
 Save this file and close it.  Now we can build this image. 
 
 ```
-sudo docker build -t <yourname>/staticweb .
+docker build -t <yourname>/staticweb .
 ```
 where ```<yourname>``` can be your docker hub account (if you have one) or 
 any old name if you don't wish to create one. 
@@ -556,7 +510,7 @@ All of the properties in the previous nginx container will be used.
 
 Let's run and test this new container:
 ```
-sudo docker run -d -p 80<user #>:80 --name=<yourname> <yourname>/staticweb
+docker run -d -p 88<user #>:80 --name=<yourname> <yourname>/staticweb
 ```
 
 Once again you should be able to access your container with its static 
@@ -570,14 +524,14 @@ You can upload this image to dockerhub.  First, go visit
 this is done, return back to your lab workstation and run the command: 
 
 ```
-sudo docker push <yourname>/staticweb
+docker push <yourname>/staticweb
 ```
 It will ask you for your login credentials and will upload it.  Note that
 the <yourname> must match your docker user ID.  If you didn't do that
 then change the name of your image to match your docker user ID by running
 the docker tag command:
 ```
-sudo docker tag <originalname>/staticweb <newname>/staticweb
+docker tag <originalname>/staticweb <newname>/staticweb
 ```
 Then you can redo the ```docker push``` command above. 
 

@@ -1,0 +1,46 @@
+#cloud-config
+
+write_files:
+  - path: /etc/jenkins-slave.sh
+    permissions: "0755"
+    content: |
+		#!/bin/sh
+
+		# Install Java
+		mkdir /home/core/java
+		cd /home/core/java
+		wget -O java.tar.gz http://javadl.sun.com/webapps/download/AutoDL?BundleId=83376
+		tar xzvf java.tar.gz
+		rm java.tar.gz
+		rm /home/core/.bashrc
+		echo 'export PATH=$PATH:/home/core/java/jre1.7.0_51/bin/' > /home/core/.bashrc
+
+		# HACK: Copy github ssh key
+		echo "-----BEGIN RSA PRIVATE KEY-----
+		... REST OF THE KEY ...
+		-----END RSA PRIVATE KEY-----" > /home/core/.ssh/id_rsa
+		chmod 600 /home/core/.ssh/id_rsa
+
+		# Add github to known_hosts
+		ssh-keyscan -H github.com > /home/core/.ssh/known_hosts
+
+
+coreos:
+  units:
+    - name: "runcmd.service"
+      command: "start"
+      content: |
+        [Unit]
+        Description=Run a command
+        [Service]
+        TimeoutStartSec=0
+        Type=oneshot
+        KillMode=none
+        ExecStart=/etc/jenkins-slave.sh
+        RemainAfterExit=yes
+
+ssh_authorized_keys:
+  # include one or more SSH public keys
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3tlDaR7OUnYtSY0znXVKdkvubQWvHKHqavIhLK1wm9r1cm53lNRrEG4JALJ5gGfJqAwztY8NIOXi03gaIPkl/8GTsBxNEiJI+K6fG34RyIUmy36B9/O1ny2KkNpw+KQ2jX2zPwKBtNTTdiVxFCFTJa5AnaIDvMByKCbw2ULbcyLeXALYHYybf2caFreI0uhwXxj3BKuXfZD1eHufsln8+ZqSgUM14vebpZv86yi0xJq41hjj0hUklHk3jwbFgYtql7fQzFFJnGi8nRRl4dxrsQZarhGYijsNbTHjEK1KJtI1DPFqpzuhYE+iYfXn0xjCtMuiVWwRngR6Ug86ATTDb
+  - ssh-dss AAAAB3NzaC1kc3MAAACBAMJubadTbAOOxe3eTuTKdaHArA59qYmWKPwoiVrIokytEqKaoBC8hhu+GMy5OuXrM+8A3k36I0YjMcN5tWQ0fHeH2QysQWonndztixzs8m71Dau7OTOILDZaF6FP+BN8CLje4pW4e4RHxF7Eko0GIF82hJI+7xnj5YQB2nrHWNQ/AAAAFQCVTRrwUUv9JdT4WtjM+sl/BwEz+QAAAIAYl/OHqw3NYfccH32kRpRlVSHKE48xf+UhYrrMzga7C0Ub6ZMUvaBkapr1Gv9YNLlazbRC2jgaakiXEBHiAQZMiGvpNAQW8zm7V+VRS8VZynA0vkM7//gDBCms56CYsPZI/V7Qxpyl0igRaJo6zq5KZHkKYNBWt84Sh9pFsWtngwAAAIALcj+nJziobZsSDQV5dqG5CjLpDZbufNeuFOoBsjoMWyFPkLJoNYfTjJfqU8a+dlBdi4V8lae5RsF+eHoVrGu/ehwty6LD+QKFUNAtTR0zqtuydqlosXodejarmTpLppnPnS4eAQ3oh8o2FZnLBX4eOlw4qPEPbDrFNbDQ6q7eUw==
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLjMPpiDsaTqFD6KEVs4fjraORH2Qdr2VpUwwFP1LTXklJkySG+EH+SbNJ2De9oYdtbBxZfPeVYQZidrkDo3ZzVs5Ee75uqNfrhRFHGa68SgOXgEM/UYkuF+tzG97150uxTLlThpgpwXhO1MuOkU2eW6uTTnsWZOqR7D51Yo1cOs7EAzVuuM2T7w7ANZk+OpjCObAEwAEOoe6ILUW84MXq0ZsOurR3pE10S6C1JLomBkQUHsyISdu0PkqSNTQtSEzvBkCzXdypRfxOPmVDGCdryqCvc7ml5onmKS1F9BMb2Ead0iAiWSNiyqWgy3J9qJLSvEEEGmuzQvF7lX4ThrPJ
