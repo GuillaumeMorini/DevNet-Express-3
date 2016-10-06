@@ -91,6 +91,11 @@ _NOTE: Make sure you leave the ```export``` in front of the definition_
 Setting these environment variables will allow your other programs to access the 
 APIs of the lab for all the excercises.  
 
+To avoid Warning messages, you can also add this line in your .profile :
+```
+export PYTHONWARNINGS="ignore"
+````
+
 You can use ```vi``` or ```nano``` to open the file: 
 
 ```
@@ -198,7 +203,7 @@ If you had ```sudo``` access you would be able to install other python libraries
 Now that you see several OpenStack python client libraries are installed we can use these libraries
 to launch an instance.  
 
-In cloud computing we typically call 'vms' 'instances' to denote their ephemeral nature. 
+In cloud computing we typically call 'virtual machines (VMs)' 'instances' to denote their ephemeral nature. 
 
 Let's start by listing the existing servers that are currently running in your project. 
 This can be done by running the below command:
