@@ -14,7 +14,7 @@
   * [2\.2\.3 Starting Docker Images](#223-starting-docker-images)
   * [2\.2\.4 Building a basic Container](#224-building-a-basic-container)
 * [2\.3 (Optional) Setting Git and Docker on your own laptop](#23-optional-setting-git-and-docker-on-your-own-laptop)
-
+* [2\.4 (Optional) More information on Git](#24-more-information-on-git)
 
 In the last lab you learned about using APIs with Metapod. 
 
@@ -541,3 +541,9 @@ Then you can redo the ```docker push``` command above.
 Installing a workstation 
 [Download and install Git tools](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 [Download and install the Docker Toolbox](https://www.docker.com/toolbox)
+
+## 2.4 (Optional) More information on Git
+
+More information on Git could be found in DevNet :
+
+[DevNet](https://learninglabs.cisco.com/labs/tags/git)
