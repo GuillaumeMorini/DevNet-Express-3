@@ -530,10 +530,10 @@ cd ~/COPC-API-Examples/05-Terraform/
 ```
 Modify the ```example.tf``` file.
 
-* Change the username to your username "user_xx"
+* Change the username to your username "userxx"
 * Update name, image_id, flavor_id and keypair
 * Remove user_data line
-* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
+* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```nova net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
 ```
   network {
     uuid = "367bb368-5be1-4534-93ff-0ccf15e51700"

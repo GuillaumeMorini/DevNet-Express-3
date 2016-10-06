@@ -98,7 +98,7 @@ code and copy it into our newly created private repo.  This is done by
 executing the following commands back on your lab workstation: 
 
 ```
-git clone https://github.com/vallard/go-webapp.git
+git clone https://github.com/Guismo1/go-webapp.git
 cd go-webapp
 ```
 Now we want to change the remote origin from Github to our local Gitlab
@@ -172,7 +172,7 @@ _coreos-slave_.
 ![Jenkins restrict](./images/j03.png)
 
 * Under _Source Code Management_ select _Git_ and fill in the repository information
-  * Repository URL: ```ssh://git@ci:10022/<yourname>/web.git``` where ```<yourname>``` is your user id. 
+  * Repository URL: ```http://git@ci:1080/<yourname>/web.git``` where ```<yourname>``` is your user id. 
   * Credentials: There should be a jenkins credentials to select from. 
  
 ![Jenkins SVN ](./images/j04.png)
@@ -202,17 +202,6 @@ Select _Add build step_ and select _Execute shell_ from the list of options.  We
 ![Gitlab hook](./images/j07.png)
 
 Save your changes below with the blue button. 
-
-### 3.2.4 Slack Integration
-
-We'd like our robot to speak to our chat integration.  You don't have to sign up for Slack but we will use slack 
-for this lab.  The reason we use slack instead of Cisco Spark is because Cisco Spark has no integration into Jenkins. 
-
-Under the Slack Notifications, check all the boxes: 
-
-![Jenkins Slack](./images/gl11.png)
-
-If you want to do more with Slack, let the instructor know.  The reason for this step is so we can see all the commits and builds.
 
 ### 3.2.5 Trigger web hooks
 
