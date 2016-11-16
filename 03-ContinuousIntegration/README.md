@@ -19,12 +19,7 @@ anything you like (your name, CEC, etc).
 
 ![Sign up for Gitlab](./images/gl01.png)
 
-Enter a random password.  Let the administrator know that you have created
-the account.  They will then confirm your account so that you can login
-without having to check your email.  
-
-Once they have notified you that your account has been confirmed, log into
-gitlab.  
+Enter a random password.  Log into gitlab.  
 
 ![Login to Gitlab](./images/gl02.png)
 
