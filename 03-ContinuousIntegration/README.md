@@ -172,7 +172,7 @@ _coreos-slave_.
 ![Jenkins restrict](./images/j03.png)
 
 * Under _Source Code Management_ select _Git_ and fill in the repository information
-  * Repository URL: ```http://git@ci:1080/<yourname>/web.git``` where ```<yourname>``` is your user id. 
+  * Repository URL: ```http://ci:10080/<yourname>/web.git``` where ```<yourname>``` is your user id. 
   * Credentials: There should be a jenkins credentials to select from. 
  
 ![Jenkins SVN ](./images/j04.png)
