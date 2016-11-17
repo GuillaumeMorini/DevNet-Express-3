@@ -99,10 +99,10 @@ cd go-webapp
 Now we want to change the remote origin from Github to our local Gitlab
 account.  To do this, we first configure some global settings: 
 ```
-git config --global user.name "<gitlab username>"
+git config --global user.name "<gitlab name>"
 git config --global user.email "<gitlab email>"
 ```
-Where ```<gitlab username>``` is the user name you signed into Gitlab with. 
+Where ```<gitlab name>``` is the name you entered into Gitlab, during the account creation. 
 
 Now, we will remove the Github origin
 ```
