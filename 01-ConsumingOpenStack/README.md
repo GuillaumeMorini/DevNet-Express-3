@@ -443,6 +443,9 @@ sure this is the image ID and not the image name.
       nics:
       - net-id : 367bb368-5be1-4534-93ff-0ccf15e51700
 ```
+Like in example below
+
+![Ansible](images/ansible.png "Ansible YML file")
 
 Notice that the script will also use environment variables.  In Ansible
 2.0 these are not required and picked up automatically with the new
@@ -479,13 +482,15 @@ Modify the ```heat-wget.yml``` file.
 * Make sure the image name actually exists on the system.  Use 
 ```glance image-list``` to verify
 * Make sure your keypair is there. 
-* Modify the image name to be an image name that actually exists on the system. 
-* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
+* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```nova net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
 ```
     networks:
       - network : 367bb368-5be1-4534-93ff-0ccf15e51700
 ```
 
+Like in example below
+
+![Heat](images/heat.png "Heat YML file")
 
 Save the changes and close the file. 
 
@@ -540,6 +545,10 @@ Modify the ```example.tf``` file.
     name = "private"
   }
 ```
+
+Like in example below
+
+![Terraform](images/terraform.png "Terraform file")
 
 Test with the command ```terraform plan```
 
