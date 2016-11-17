@@ -22,8 +22,8 @@ communicate with the OpenStack APIs in Metapod.
   * [1\.5 Creating your own Python Commands](#15-creating-your-own-python-commands)
   * [1\.6 Ansible](#16-ansible)
     * [1\.6\.1 Get Sample Ansible](#161-get-sample-ansible)
-    * [1\.6\.1 Edit playbook](#161-edit-playbook)
-    * [1\.6\.2 Run the playbook](#162-run-the-playbook)
+    * [1\.6\.2 Edit playbook](#162-edit-playbook)
+    * [1\.6\.3 Run the playbook](#163-run-the-playbook)
   * [1\.7 OpenStack Heat](#17-openstack-heat)
     * [1\.7\.1 Edit a sample Heat Template](#171-edit-a-sample-heat-template)
     * [1\.7\.2 Run the heat template](#172-run-the-heat-template)
@@ -53,7 +53,7 @@ to your own environment._
 
 ## 1.2 Exercise - Build Workstation Environment
 
-Login to the Metapod horizon dashboard.  This is a URL that should be posted
+Login to the Metapod horizon dashboard, using the same credentials as before.  This is a URL that should be posted
 at the front of the class.  
 
 Click on the __ACCESS AND SECURITY__ 
@@ -103,7 +103,7 @@ vi ~/.profile
 ```
 
 [There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
-to vi that might help if you wish to learn that.  (recommended if you are not!)
+to vi that might help if you wish to learn that.  (recommended if you are not familiar with vi!)
 
 __Note:  You should put the Metapod password in there and not $OS_PASSWORD in the environment variables__
 Log out and log back in for your environment variables to become active.  
@@ -237,10 +237,10 @@ This will show the different flavors availabe in the system.  In Metapod the adm
 the ability to create different flavors.  For example, a project may require a flavor that uses
 all the resources of a physical machine for using Apache Spark with HDFS.  
 
-Take note of the m1.small ID.  This may be 3 or something else.  We can get more information on this
+Take note of the m1.small ID.  This may be a long string like "44e0aeb8-95fd-4a18-bca0-be1eec8f42ac" or something else.  We can get more information on this
 
 ```
-nova flavor-show 3
+nova flavor-show 44e0aeb8-95fd-4a18-bca0-be1eec8f42ac
 ```
 
 alternatively you can run: 
@@ -312,11 +312,11 @@ nova boot --flavor m1.small --image ubuntu_1204_server_cloudimg_amd64 --key-name
 Where ```<name>``` is your fun unique name.  
 
 Check on the status to see if the server has been created using the ```nova list``` and 
-```nova show <name>firstimage``` commands. Note the IP address of your instance.
+```nova show <name>firstimage``` commands. Note the IP address of your instance, in the private network field.
 
 ### 1.4.7 Log In to the new Instance
 
-To make sure you did it right, log into the new instance you just created:
+To make sure you did it right, log into the new instance ou just created, from the existing SSH session:
 ```
 ssh -i <name>key.pem cloud@IP_address
 ```
@@ -422,7 +422,7 @@ git clone https://github.com/vallard/COPC-API-Examples.git
 
 This will clone several examples that we may use later on. 
 
-### 1.6.1 Edit playbook
+### 1.6.2 Edit playbook
 
 Change to the directory where Ansible scripts are laid out for you.  
 
@@ -438,7 +438,7 @@ sure this is the image ID and not the image name.
 * Enter your key name.  This is the key name you used in a previous exercise. 
 * Change the ```name``` from ```ansible-server``` to something unique. 
 * Change the ```flavor_id``` to be the m1.small ID that you can get by running ```nova flavor-list```.  This will be a long string like ```44e0aeb8-95fd-4a18-bca0-be1eec8f42ac```
-* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```neutron net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
+* Add the following lines to connect the instances to the private network using the network ID that you can get by running ```nova net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
 ```
       nics:
       - net-id : 367bb368-5be1-4534-93ff-0ccf15e51700
@@ -448,7 +448,7 @@ Notice that the script will also use environment variables.  In Ansible
 2.0 these are not required and picked up automatically with the new
 [shade library.](http://docs.openstack.org/infra/shade/)
 
-### 1.6.2 Run the playbook
+### 1.6.3 Run the playbook
 
 We can run the playbook to create a new OpenStack image by running: 
 
