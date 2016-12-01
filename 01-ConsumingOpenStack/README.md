@@ -255,7 +255,7 @@ and get the same results.
 OpenStack tries to stick with the CRUD model, so for most subcommands there is a ```-show```, ```-delete```
 , and ```-list``` command. 
 
-What is[CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)?
+What is [CRUD] (https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) ?
 
 ### 1.4.4 Show OpenStack Images
 
