@@ -188,10 +188,11 @@ that several OpenStack python clients have been installed.  The client names cor
 project.  
 
 ```
-python-cinderclient (1.4.0)
-python-heatclient (0.7.0)
-python-keystoneclient (1.7.1)
-python-novaclient (2.29.0)
+python-cinderclient (1.5.0)
+python-glanceclient (1.2.0)
+python-heatclient (0.8.0)
+python-keystoneclient (2.0.0)
+python-novaclient (2.35.0)
 python-swiftclient (2.6.0)
 ```    
 
