@@ -106,6 +106,7 @@ vi ~/.profile
 to vi that might help if you wish to learn that.  (recommended if you are not familiar with vi!)
 
 __Note:  You should put the Metapod password in there and not $OS_PASSWORD in the environment variables__
+
 Log out and log back in for your environment variables to become active.  
 Alternatively, run the command: 
 
