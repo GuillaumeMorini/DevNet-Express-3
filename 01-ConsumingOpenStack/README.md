@@ -296,10 +296,9 @@ Running the command
 nova keypair-list
 ```
 
-will show you all the keys in your system.  If you made a mistake, you can delete the key you made and run the command again.  
-```
-nova keypair-delete <name>key
-```
+will show you all the keys in your system.  
+
+If you made a mistake, you can delete the key you made with the followind command _nova keypair-delete <name>key_ and run the command again.  
 
 _Note that if you lose the private key, you will never be able to log into your instances again.  It can not
 be recovered.  So make sure you save it the first time!  If you lose it, delete the keypair and use one you know!_
