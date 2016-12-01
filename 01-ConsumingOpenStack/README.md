@@ -312,8 +312,9 @@ nova boot --flavor m1.small --image ubuntu_1204_server_cloudimg_amd64 --key-name
 
 Where ```<name>``` is your fun unique name.  
 
-Check on the status to see if the server has been created using the ```nova list``` and 
-```nova show <name>firstimage``` commands. Note the IP address of your instance, in the private network field.
+Check on the status to see if the server has been created using the ```nova list```. 
+
+Find and note the IP address of your instance,  with ```nova show <name>firstimage``` command, in the private network field.
 
 ### 1.4.7 Log In to the new Instance
 
@@ -321,7 +322,7 @@ To make sure you did it right, log into the new instance ou just created, from t
 ```
 ssh -i <name>key.pem cloud@IP_address
 ```
-where ```IP_address``` is the IP address you picked previously. 
+where ```IP_address``` is the IP address found with the command ```nova show <name>firstimage```. 
 
 If all is successful you should be able to login with out a password: 
 ```
