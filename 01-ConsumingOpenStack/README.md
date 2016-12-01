@@ -298,7 +298,7 @@ nova keypair-list
 
 will show you all the keys in your system.  
 
-If you made a mistake, you can delete the key you made with the followind command _nova keypair-delete <name>key_ and run the command again.  
+If you made a mistake, you can delete the key you made with the following command _nova keypair-delete <name>key_ and run the command again.  
 
 _Note that if you lose the private key, you will never be able to log into your instances again.  It can not
 be recovered.  So make sure you save it the first time!  If you lose it, delete the keypair and use one you know!_
@@ -434,8 +434,7 @@ cd ~/COPC-API-Examples/03-Ansible/
 Here you will find a playbook called copc-one.yml.  Open this file 
 and we will edit it. 
 
-* Enter an image ID.  You may need to run ```nova image-list``` to access one. Note, make
-sure this is the image ID and not the image name. 
+* Enter an image ID. You may need to run ```nova image-list``` to access one, like "ubuntu_1204_server_cloudimg_amd64". Note, make sure this is the image ID and not the image name. 
 * Enter your key name.  This is the key name you used in a previous exercise. 
 * Change the ```name``` from ```ansible-server``` to something unique. 
 * Change the ```flavor_id``` to be the m1.small ID that you can get by running ```nova flavor-list```.  This will be a long string like ```44e0aeb8-95fd-4a18-bca0-be1eec8f42ac```
