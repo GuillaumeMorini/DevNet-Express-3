@@ -41,7 +41,7 @@ resumes, etc.
 
 While git is free and opensource, Github is a company that stores github repositories
 for you.  You can make as many repositories as you want in Github for free but 
-they are publicly available.  So never store sensative things like passwords or 
+they are publicly available.  So never store sensitive things like passwords or 
 account information on it.  
 
 If you do not have an account, [sign up for Github now](http://github.com). There
