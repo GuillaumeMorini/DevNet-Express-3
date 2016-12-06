@@ -220,6 +220,14 @@ Add remove the ```foo.txt``` file and then commit the changes:
 git rm '*.txt'
 git commit -am "Removed the text file"
 ```
+Push the change to GitHub
+```
+git push
+```
+
+Check on GitHub Web UI the different branches by going to this URL:
+```https://github.com/<your GitHub username>/cloudtest/branches/all```
+
 Now let's go back to the master branch:
 ```
 git checkout master
