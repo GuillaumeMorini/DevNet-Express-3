@@ -283,7 +283,7 @@ Navigate to this [This Lab](https://github.com/Guismo1/DevNet-Express-3)
 Click the Fork button at the top right hand of the screen and fork this into your own 
 github repo. 
 
-![Fork the CloudDay Lab](./images/gh5.png)
+![Fork the DevNet-Express-3 Lab](./images/gh5.png)
 
 You'll now have your own copy of the entire lab including all the images,
 scripts, and documentation.  
@@ -291,7 +291,7 @@ scripts, and documentation.
 Clone the new repo unto your workstation using the git clone command:
 ```
 cd ~
-git clone https://github.com/<your username>/DevNet-Express-3.git
+git clone https://github.com/<your GitHub username>/DevNet-Express-3.git
 ```
 Now that you have the repo, let's make a change.  We'll sign the guestbook:
 
