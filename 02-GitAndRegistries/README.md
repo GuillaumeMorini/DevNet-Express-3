@@ -526,15 +526,21 @@ container.
 
 #### (Optional) Upload to the Docker Hub
 
-You can upload this image to dockerhub.  First, go visit 
+You can upload this image to Docker Hub.  First, go visit 
 [DockerHub](https://hub.docker.com) and sign up for an account.  Once
 this is done, return back to your lab workstation and run the command: 
 
 ```
+docker login
+```
+
+Enter the credentials (login and password), for the account you just created on Docker Hub.
+Then, run this command to upload your image to Docker Hub:
+
+```
 docker push <yourname>/staticweb
 ```
-It will ask you for your login credentials and will upload it.  Note that
-the <yourname> must match your docker user ID.  If you didn't do that
+Note that <yourname> must match your docker user ID.  If you didn't do that
 then change the name of your image to match your docker user ID by running
 the docker tag command:
 ```
