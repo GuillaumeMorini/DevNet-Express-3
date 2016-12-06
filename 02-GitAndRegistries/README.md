@@ -290,6 +290,7 @@ scripts, and documentation.
 
 Clone the new repo unto your workstation using the git clone command:
 ```
+cd ~
 git clone https://github.com/<your username>/DevNet-Express-3.git
 ```
 Now that you have the repo, let's make a change.  We'll sign the guestbook:
