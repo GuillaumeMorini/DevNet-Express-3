@@ -226,7 +226,7 @@ git push
 ```
 
 Check on GitHub Web UI the different branches by going to this URL:
-```https://github.com/<your GitHub username>/cloudtest/branches/all```
+```https://github.com/<your GitHub username>/cloudtest/branches/all``
 
 Now let's go back to the master branch:
 ```
@@ -497,7 +497,7 @@ current directory. (should be the html directory from the last exercise)
 wget https://raw.githubusercontent.com/Guismo1/DevNet-Express-3/master/02-GitAndRegistries/html/index.html
 vim Dockerfile
 ```
-Inside this file let's past the following into this file:
+Inside this file let's paste the following into this file:
 ```
 FROM ci:5000/nginx
 MAINTAINER FirstName LastName "youremail@yourdomain.com"
