@@ -2,7 +2,7 @@
 
 This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
-communicate with the OpenStack APIs in Metapod.  
+communicate with the OpenStack APIs in Metacloud.  
 
 ## Table of Contents
 
@@ -53,12 +53,12 @@ to your own environment._
 
 ## 1.2 Exercise - Build Workstation Environment
 
-Login to the Metapod horizon dashboard, using the same credentials as before.  This is a URL that should be posted
+Login to the Metacloud horizon dashboard, using the same credentials as before.  This is a URL that should be posted
 at the front of the class.  
 
 Click on the __ACCESS AND SECURITY__ 
 
-![Dashboard](images/d1.png "Metapod Dashboard")
+![Dashboard](images/d1.png "Metacloud Dashboard")
 
 Navigate to the __API Access__ tab in the workpane and download the Openstack RC file. 
 
@@ -105,7 +105,7 @@ vi ~/.profile
 [There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
 to vi that might help if you wish to learn that.  (recommended if you are not familiar with vi!)
 
-__Note:  You should put the Metapod password in there and not $OS_PASSWORD in the environment variables__
+__Note:  You should put the Metacloud password in there and not $OS_PASSWORD in the environment variables__
 
 Log out and log back in for your environment variables to become active.  
 Alternatively, run the command: 
@@ -123,7 +123,7 @@ env | grep OS
 _NOTE: The OpenStack RC file that you download asks you to enter your password when
 you first login to a new shell.  This doesn't work so well in the .profile file. 
 So this is really just a matter of style.  You can also chose to simply source the 
-OpenStack file you downloaded from Metapod._
+OpenStack file you downloaded from Metacloud._
 
 ## 1.3 Exercise  - Curl: Using raw APIs
 
@@ -235,7 +235,7 @@ Run the command:
 nova flavor-list
 ```
 
-This will show the different flavors availabe in the system.  In Metapod the administrators have
+This will show the different flavors availabe in the system.  In Metacloud the administrators have
 the ability to create different flavors.  For example, a project may require a flavor that uses
 all the resources of a physical machine for using Apache Spark with HDFS.  
 
@@ -267,7 +267,7 @@ or
 glance image-list
 ```
 
-You should see lots of images!  Cisco Metapod comes with many already predefined for you.  Most 
+You should see lots of images!  Cisco Metacloud comes with many already predefined for you.  Most 
 environments will make their own.  
 
 Find the ubuntu image ```ubuntu_1204_server_cloudimg_amd64``` as this is what we'll use.  
@@ -354,7 +354,7 @@ applicable law.
 
 This concludes Exercise 1.4.  You have created an instance using the 
 command line. Everything you have done so far could also be done on 
-the Horizon dashboard that Metapod provides.  
+the Horizon dashboard that Metacloud provides.  
 
 There are other clients that you can experiment with if you have time
 including the cinder and keystone clients.

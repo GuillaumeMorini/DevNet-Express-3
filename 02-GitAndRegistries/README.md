@@ -16,7 +16,7 @@
 * [2\.3 (Optional) Setting Git and Docker on your own laptop](#23-optional-setting-git-and-docker-on-your-own-laptop)
 * [2\.4 (Optional) More information on Git](#24-more-information-on-git)
 
-In the last lab you learned about using APIs with Metapod. 
+In the last lab you learned about using APIs with Metacloud. 
 
 This module will introduce git and talk about branches, pull requests, etc. 
 We will also talk about Docker Registries: Places to store your docker images
