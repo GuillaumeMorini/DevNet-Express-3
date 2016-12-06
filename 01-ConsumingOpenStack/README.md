@@ -537,7 +537,10 @@ cd ~/COPC-API-Examples/05-Terraform/
 Modify the ```example.tf``` file.
 
 * Change the username to your username "userxx"
-* Update name, image_id, flavor_id and keypair
+* Update name, using tf-userxx
+* Update image_id. You may need to run nova image-list to access one, like "ubuntu_1204_server_cloudimg_amd64". Note, make sure this is the image ID and not the image name. 
+* Update flavor_id, use the id of m1.small. This will be a long string like 4e0aeb8-95fd-4a18-bca0-be1eec8f42ac
+* Update keypair, with your keypair name
 * Remove user_data line
 * Add the following lines to connect the instances to the private network using the network ID that you can get by running ```nova net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
 ```
