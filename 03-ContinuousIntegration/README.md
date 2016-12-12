@@ -137,7 +137,8 @@ access to our project.
 
 * From the Project dashboard, select your project.  
 * Select _Members_ from the sidebar. 
-* Select _Add Members_ from the green button and add the Jenkins user. 
+* Select _Add Members_ from the green button and add the Jenkins user.
+* Do not forget to specify _Project Access_ to _Developer_. 
 
 ![Add Jenkins User](./images/gl09.png)
 
