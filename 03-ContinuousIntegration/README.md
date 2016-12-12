@@ -161,7 +161,7 @@ be your name or user ID.
 
 ### 3.2.1 Configure Git information
 
-* Select the button __Restrict where this project can be run__ for the lable expression select
+* Select the button __Restrict where this project can be run__ for the label expression select
 _coreos-slave_. 
 
 ![Jenkins restrict](./images/j03.png)
