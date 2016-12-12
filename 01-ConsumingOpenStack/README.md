@@ -2,7 +2,7 @@
 
 This module will focus on using OpenStack APIs using various configuration
 tools.  When completed, the user will gain an understanding of how to 
-communicate with the OpenStack APIs in Metapod.  
+communicate with the OpenStack APIs in Metacloud.  
 
 ## Table of Contents
 
@@ -53,12 +53,12 @@ to your own environment._
 
 ## 1.2 Exercise - Build Workstation Environment
 
-Login to the Metapod horizon dashboard, using the same credentials as before.  This is a URL that should be posted
+Login to the Metacloud horizon dashboard, using the same credentials as before.  This is a URL that should be posted
 at the front of the class.  
 
 Click on the __ACCESS AND SECURITY__ 
 
-![Dashboard](images/d1.png "Metapod Dashboard")
+![Dashboard](images/d1.png "Metacloud Dashboard")
 
 Navigate to the __API Access__ tab in the workpane and download the Openstack RC file. 
 
@@ -105,7 +105,7 @@ vi ~/.profile
 [There's a nice 5 minute introduction](http://heather.cs.ucdavis.edu/~matloff/UnixAndC/Editors/ViIntro.html)
 to vi that might help if you wish to learn that.  (recommended if you are not familiar with vi!)
 
-__Note:  You should put the Metapod password in there and not $OS_PASSWORD in the environment variables__
+__Note:  You should put the Metacloud password in there and not $OS_PASSWORD in the environment variables__
 
 Log out and log back in for your environment variables to become active.  
 Alternatively, run the command: 
@@ -123,7 +123,7 @@ env | grep OS
 _NOTE: The OpenStack RC file that you download asks you to enter your password when
 you first login to a new shell.  This doesn't work so well in the .profile file. 
 So this is really just a matter of style.  You can also chose to simply source the 
-OpenStack file you downloaded from Metapod._
+OpenStack file you downloaded from Metacloud._
 
 ## 1.3 Exercise  - Curl: Using raw APIs
 
@@ -235,7 +235,7 @@ Run the command:
 nova flavor-list
 ```
 
-This will show the different flavors availabe in the system.  In Metapod the administrators have
+This will show the different flavors availabe in the system.  In Metacloud the administrators have
 the ability to create different flavors.  For example, a project may require a flavor that uses
 all the resources of a physical machine for using Apache Spark with HDFS.  
 
@@ -267,7 +267,7 @@ or
 glance image-list
 ```
 
-You should see lots of images!  Cisco Metapod comes with many already predefined for you.  Most 
+You should see lots of images!  Cisco Metacloud comes with many already predefined for you.  Most 
 environments will make their own.  
 
 Find the ubuntu image ```ubuntu_1204_server_cloudimg_amd64``` as this is what we'll use.  
@@ -296,10 +296,9 @@ Running the command
 nova keypair-list
 ```
 
-will show you all the keys in your system.  If you made a mistake, you can delete the key you made and run the command again.  
-```
-nova keypair-delete <name>key
-```
+will show you all the keys in your system.  
+
+If you made a mistake, you can delete the key you made with the following command _nova keypair-delete <name>key_ and run the command again.  
 
 _Note that if you lose the private key, you will never be able to log into your instances again.  It can not
 be recovered.  So make sure you save it the first time!  If you lose it, delete the keypair and use one you know!_
@@ -313,8 +312,9 @@ nova boot --flavor m1.small --image ubuntu_1204_server_cloudimg_amd64 --key-name
 
 Where ```<name>``` is your fun unique name.  
 
-Check on the status to see if the server has been created using the ```nova list``` and 
-```nova show <name>firstimage``` commands. Note the IP address of your instance, in the private network field.
+Check on the status to see if the server has been created using the ```nova list```. 
+
+Find and note the IP address of your instance,  with ```nova show <name>firstimage``` command, in the private network field.
 
 ### 1.4.7 Log In to the new Instance
 
@@ -322,7 +322,7 @@ To make sure you did it right, log into the new instance ou just created, from t
 ```
 ssh -i <name>key.pem cloud@IP_address
 ```
-where ```IP_address``` is the IP address you picked previously. 
+where ```IP_address``` is the IP address found with the command ```nova show <name>firstimage```. 
 
 If all is successful you should be able to login with out a password: 
 ```
@@ -354,7 +354,7 @@ applicable law.
 
 This concludes Exercise 1.4.  You have created an instance using the 
 command line. Everything you have done so far could also be done on 
-the Horizon dashboard that Metapod provides.  
+the Horizon dashboard that Metacloud provides.  
 
 There are other clients that you can experiment with if you have time
 including the cinder and keystone clients.
@@ -435,8 +435,7 @@ cd ~/COPC-API-Examples/03-Ansible/
 Here you will find a playbook called copc-one.yml.  Open this file 
 and we will edit it. 
 
-* Enter an image ID.  You may need to run ```nova image-list``` to access one. Note, make
-sure this is the image ID and not the image name. 
+* Enter an image ID. You may need to run ```nova image-list``` to access one, like "ubuntu_1204_server_cloudimg_amd64". Note, make sure this is the image ID and not the image name. 
 * Enter your key name.  This is the key name you used in a previous exercise. 
 * Change the ```name``` from ```ansible-server``` to something unique. 
 * Change the ```flavor_id``` to be the m1.small ID that you can get by running ```nova flavor-list```.  This will be a long string like ```44e0aeb8-95fd-4a18-bca0-be1eec8f42ac```
@@ -538,7 +537,10 @@ cd ~/COPC-API-Examples/05-Terraform/
 Modify the ```example.tf``` file.
 
 * Change the username to your username "userxx"
-* Update name, image_id, flavor_id and keypair
+* Update name, using tf-userxx
+* Update image_id. You may need to run nova image-list to access one, like "ubuntu_1204_server_cloudimg_amd64". Note, make sure this is the image ID and not the image name. 
+* Update flavor_id, use the id of m1.small. This will be a long string like 4e0aeb8-95fd-4a18-bca0-be1eec8f42ac
+* Update keypair, with your keypair name
 * Remove user_data line
 * Add the following lines to connect the instances to the private network using the network ID that you can get by running ```nova net-list```. This will be a long string like ```367bb368-5be1-4534-93ff-0ccf15e51700``` :
 ```
