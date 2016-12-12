@@ -16,7 +16,7 @@
 * [2\.3 (Optional) Setting Git and Docker on your own laptop](#23-optional-setting-git-and-docker-on-your-own-laptop)
 * [2\.4 (Optional) More information on Git](#24-more-information-on-git)
 
-In the last lab you learned about using APIs with Metapod. 
+In the last lab you learned about using APIs with Metacloud. 
 
 This module will introduce git and talk about branches, pull requests, etc. 
 We will also talk about Docker Registries: Places to store your docker images
@@ -41,7 +41,7 @@ resumes, etc.
 
 While git is free and opensource, Github is a company that stores github repositories
 for you.  You can make as many repositories as you want in Github for free but 
-they are publicly available.  So never store sensative things like passwords or 
+they are publicly available.  So never store sensitive things like passwords or 
 account information on it.  
 
 If you do not have an account, [sign up for Github now](http://github.com). There
@@ -129,9 +129,10 @@ You'll see that git is tracking that this file has been changed but the
 changes have not been committed.  Now commit the changes: 
 ```
 git commit -am "made a change"
+```
 
 You may get an error if you are working with git for the first time, something like:
-++
+```
 user09@f3f2e1b:~/Metacloud-test$ git commit -am "kshah changes"
 
 *** Please tell me who you are.
@@ -142,10 +143,10 @@ git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 
 to set your account's default identity.
+```
 
 Go ahead and run git config commands above and then continue onto below.
 
-```
 The 'made a change' preceeded by the ```-m``` flag gives the message of the commit
 so others can see what the general idea of your change was.  
 The ```-a``` flag signifies to commit all changed files. 
@@ -219,6 +220,14 @@ Add remove the ```foo.txt``` file and then commit the changes:
 git rm '*.txt'
 git commit -am "Removed the text file"
 ```
+Push the change to GitHub
+```
+git push
+```
+
+Check on GitHub Web UI the different branches by going to this URL:
+```https://github.com/<your GitHub username>/cloudtest/branches/all``
+
 Now let's go back to the master branch:
 ```
 git checkout master
@@ -282,14 +291,15 @@ Navigate to this [This Lab](https://github.com/Guismo1/DevNet-Express-3)
 Click the Fork button at the top right hand of the screen and fork this into your own 
 github repo. 
 
-![Fork the CloudDay Lab](./images/gh5.png)
+![Fork the DevNet-Express-3 Lab](./images/gh5.png)
 
 You'll now have your own copy of the entire lab including all the images,
 scripts, and documentation.  
 
 Clone the new repo unto your workstation using the git clone command:
 ```
-git clone https://github.com/<your username>/DevNet-Express-3.git
+cd ~
+git clone https://github.com/<your GitHub username>/DevNet-Express-3.git
 ```
 Now that you have the repo, let's make a change.  We'll sign the guestbook:
 
@@ -487,7 +497,7 @@ current directory. (should be the html directory from the last exercise)
 wget https://raw.githubusercontent.com/Guismo1/DevNet-Express-3/master/02-GitAndRegistries/html/index.html
 vim Dockerfile
 ```
-Inside this file let's past the following into this file:
+Inside this file let's paste the following into this file:
 ```
 FROM ci:5000/nginx
 MAINTAINER FirstName LastName "youremail@yourdomain.com"
@@ -516,15 +526,21 @@ container.
 
 #### (Optional) Upload to the Docker Hub
 
-You can upload this image to dockerhub.  First, go visit 
+You can upload this image to Docker Hub.  First, go visit 
 [DockerHub](https://hub.docker.com) and sign up for an account.  Once
 this is done, return back to your lab workstation and run the command: 
 
 ```
+docker login
+```
+
+Enter the credentials (login and password), for the account you just created on Docker Hub.
+Then, run this command to upload your image to Docker Hub:
+
+```
 docker push <yourname>/staticweb
 ```
-It will ask you for your login credentials and will upload it.  Note that
-the <yourname> must match your docker user ID.  If you didn't do that
+Note that <yourname> must match your docker user ID.  If you didn't do that
 then change the name of your image to match your docker user ID by running
 the docker tag command:
 ```
