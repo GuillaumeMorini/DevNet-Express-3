@@ -132,7 +132,7 @@ make web calls to the interface.  Let's try running a curl request against the O
 Authentication URL: 
 
 ```
-curl $OS_AUTH_URL
+curl -s $OS_AUTH_URL
 ```
 
 You should receive a bunch of text back in one line similar to the below:
@@ -153,7 +153,7 @@ It is also nice to 'pipe' the output of this command to a json formatting
 tool.  Python has one called json.tool.  Call the previous command again
 as follows: 
 ```
-curl $OS_AUTH_URL | python -m json.tool
+  curl -s $OS_AUTH_URL | python -m json.tool
 ```
 
 This gives you something a little more readable.  
@@ -161,7 +161,7 @@ This gives you something a little more readable.
 You can also request a token to do other openstack commands using: 
 
 ```
-curl -d '{"auth":{"passwordCredentials":{"username": "'"$OS_USERNAME"'", "password": "'"$OS_PASSWORD"'" }}}' \
+curl -sd '{"auth":{"passwordCredentials":{"username": "'"$OS_USERNAME"'", "password": "'"$OS_PASSWORD"'" }}}' \
 -H "Content-type: application/json" -X POST $OS_AUTH_URL/tokens | python -m json.tool
 ```
 _Note the double quotes around the OS variables.  This is to ensure these variables are passed to the curl command._
@@ -189,16 +189,15 @@ that several OpenStack python clients have been installed.  The client names cor
 project.  
 
 ```
+...
 python-cinderclient (1.5.0)
 python-glanceclient (1.2.0)
 python-heatclient (0.8.0)
 python-keystoneclient (2.0.0)
 python-novaclient (2.35.0)
 python-swiftclient (2.6.0)
+...
 ```    
-
-If you had ```sudo``` access you would be able to install other python libraries by running the 
-```pip install``` command. 
 
 ### 1.4.2 Launch a server
 
@@ -369,7 +368,7 @@ The python client contain libraries that can also be used by our own
 python code that we write.  To illustrate this, we'll show some code 
 that uses it.  
 
-We'll use [this sample application](https://github.com/vallard/COPC-API-Examples/blob/master/02-Python/sample-python-get.py).
+We'll use [this sample application](https://github.com/Guismo1/Metacloud-API-Examples/blob/master/02-Python/sample-python-get.py).
 Open your web browser and have a 
 look.  
 
@@ -377,7 +376,7 @@ look.
 On the workstation, download a sample python application: 
 
 ```
-wget https://raw.githubusercontent.com/vallard/COPC-API-Examples/master/02-Python/sample-python-get.py
+wget https://raw.githubusercontent.com/Guismo1/Metacloud-API-Examples/master/02-Python/sample-python-get.py
 chmod 0755 sample-python-get.py
 ```
 
@@ -419,7 +418,7 @@ are mostly written that we can use.  On your lab machine run the command:
 
 ```
 cd ~/
-git clone https://github.com/vallard/COPC-API-Examples.git
+git clone https://github.com/Guismo1/Metacloud-API-Examples.git
 ```
 
 This will clone several examples that we may use later on. 
@@ -429,10 +428,10 @@ This will clone several examples that we may use later on.
 Change to the directory where Ansible scripts are laid out for you.  
 
 ```
-cd ~/COPC-API-Examples/03-Ansible/
+cd ~/Metacloud-API-Examples/03-Ansible/
 ```
 
-Here you will find a playbook called copc-one.yml.  Open this file 
+Here you will find a playbook called metacloud-one.yml.  Open this file 
 and we will edit it. 
 
 * Enter an image ID. You may need to run ```nova image-list``` to access one, like "ubuntu_1204_server_cloudimg_amd64". Note, make sure this is the image ID and not the image name. 
@@ -457,7 +456,7 @@ Notice that the script will also use environment variables.  In Ansible
 We can run the playbook to create a new OpenStack image by running: 
 
 ```
-ansible-playbook copc-one.yml
+ansible-playbook metacloud-one.yml
 ```
 
 Log into the dashboard or run ```nova list``` to make sure that the
@@ -476,7 +475,7 @@ On your workstation, you cloned a repository with git previously.  Let's
 look at the file and edit it right now. 
 
 ```
-cd ~/COPC-API-Examples/04-Heat/
+cd ~/Metacloud-API-Examples/04-Heat/
 ```
 Modify the ```heat-wget.yml``` file.  
 
@@ -532,7 +531,7 @@ Unlike OpenStack Heat, it works across different environments such as GCE, AWS, 
 several more.  
 
 ```
-cd ~/COPC-API-Examples/05-Terraform/
+cd ~/Metacloud-API-Examples/05-Terraform/
 ```
 Modify the ```example.tf``` file.
 
